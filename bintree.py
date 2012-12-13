@@ -3,7 +3,7 @@
 __author__ = "Fabian Golle <me@fabian-golle.de>, Veronika Schoepf <veronika-s@hotmail.de>"
 __copyright__ = "Fabian Golle <me@fabian-golle.de>, Veronika Schoepf <veronika-s@hotmail.de>"
 __version__ = "0.1"
-__revision__ = "f070213204"
+__revision__ = "a354aabac9"
 __status__ = "Staging"
 
 class Node(object):
@@ -15,9 +15,10 @@ class Node(object):
 	right	= None
 
 
-	def __init__(self, arg):
+	def __init__(self, value, weight):
 		super(Node, self).__init__()
-		self.arg = arg
+		self.value = value
+		self.weight = weight
 		
 	def is_leaf(self):
 		"""Checks, if the current node is a leaf"""
@@ -38,13 +39,11 @@ class Node(object):
 	def __add__ (self, other):
 		"""Links two Nodes to a new parent one"""
 		
-		newNode = Node();
-		newNode.weight = self.weight + other.weight;
-		newNode.value = self.value + other.value;
+		newNode = Node(self.value + other.value, self.weight + other.weight);
 		newNode.left = self;
 		newNode.right = other;
 		return newNode;
-
+	
 	def get(self, key):
 		""" Get Node Information"""
 		if (key == 'weight'):
@@ -67,12 +66,11 @@ class Node(object):
 		if (method not in ['preorder', 'inorder', 'postorder', 'front']):
 			raise NotImplementedError
 
-		if (self.left != None):
-			lft = getattr(self.left, method);
-		if (self.right != None):
-			rght = getattr(self.right, method);
+		lft = self.left.traverseTree(method) if self.left is not None else [];
+		rght = self.right.traverseTree(method) if self.right is not None else [];
 
-		cur = [self.value, self.weight];
+		#cur = [self.value, self.weight];
+		cur = [self.weight];
 
 		if (method == 'preorder'):
 			return cur + lft + rght
@@ -82,10 +80,3 @@ class Node(object):
 			return lft + rght + cur
 		elif (method == 'front'):
 			return cur if self.is_leaf() else None
-
-
-
-
-
-
-
