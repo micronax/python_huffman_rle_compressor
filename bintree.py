@@ -3,8 +3,8 @@
 __author__ = "Fabian Golle <me@fabian-golle.de>, Veronika Schoepf <veronika-s@hotmail.de>"
 __copyright__ = "Fabian Golle <me@fabian-golle.de>, Veronika Schoepf <veronika-s@hotmail.de>"
 __version__ = "0.1"
-__revision__ = "a354aabac9"
-__status__ = "Staging"
+__revision__ = "322e449dbd"
+__status__ = "Production"
 
 class Node(object):
 	"""Represents a Node in a binary tree"""
