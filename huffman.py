@@ -3,7 +3,7 @@
 __author__ = "Fabian Golle <me@fabian-golle.de>, Veronika Schoepf <veronika-s@hotmail.de>"
 __copyright__ = "Fabian Golle <me@fabian-golle.de>, Veronika Schoepf <veronika-s@hotmail.de>"
 __version__ = "0.1"
-__revision__ = ""
+__revision__ = "f0b3ab7"
 __status__ = "Production"
 
 from compression import Compress
@@ -81,7 +81,11 @@ class Huffman(Compress):
 		# Encode input text
 		encodedText = ''
 		for c in text:
-			encodedText += self.codeTranslation[c]
+			try:
+				encodedText += self.codeTranslation[c]
+			except Exception:
+				print('The build-in dictionary cannot be used for this input-file because it contains unsupported characters')
+				quit()
 
 		huffman_lenght = len(encodedText)
 		self.ratio = huffman_lenght/binary_lenght
@@ -89,9 +93,9 @@ class Huffman(Compress):
 		return encodedText
 
 	def decode(self, text):
-		if (self.buildOwn == True):
-			# We need to grab an input translation dict
-			pass
+		if (self.buildOwn == True and self.setown != True):
+			print('Cannot read input dictionary. Aborting!')
+			quit()
 
 		# Build huffman-tree
 		self.buildTree()
@@ -129,6 +133,7 @@ class Huffman(Compress):
 		 if (type(omega) is not dict):
 		 	raise TypeError
 		 self.omega = omega
+		 self.setown = True
 
 	def buildTree(self):
 		self.forrest = []

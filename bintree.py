@@ -3,7 +3,7 @@
 __author__ = "Fabian Golle <me@fabian-golle.de>, Veronika Schoepf <veronika-s@hotmail.de>"
 __copyright__ = "Fabian Golle <me@fabian-golle.de>, Veronika Schoepf <veronika-s@hotmail.de>"
 __version__ = "1.0"
-__revision__ = "cf25435f11"
+__revision__ = "f0b3ab7"
 __status__ = "Production"
 
 class Node(object):
