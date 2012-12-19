@@ -2,8 +2,8 @@
 
 __author__ = "Fabian Golle <me@fabian-golle.de>, Veronika Schoepf <veronika-s@hotmail.de>"
 __copyright__ = "Fabian Golle <me@fabian-golle.de>, Veronika Schoepf <veronika-s@hotmail.de>"
-__version__ = "0.1"
-__revision__ = "322e449dbd"
+__version__ = "1.0"
+__revision__ = "cf25435f11"
 __status__ = "Production"
 
 class Node(object):
@@ -43,24 +43,6 @@ class Node(object):
 		newNode.left = self;
 		newNode.right = other;
 		return newNode;
-	
-	def get(self, key):
-		""" Get Node Information"""
-		if (key == 'weight'):
-			return self.weight;
-		elif (key == 'value'):
-			return self.value;
-		else:
-			raise NotImplementedError;
-
-	def set(self, key, value):
-		""" Set Node Information"""
-		if (key == 'weight'):
-			self.weight = value;
-		elif (key == 'value'):
-			self.value = value;
-		else:
-			raise NotImplementedError;
 
 	def traverseTree(self, method='preorder'):
 		if (method not in ['preorder', 'inorder', 'postorder', 'front']):
@@ -79,4 +61,4 @@ class Node(object):
 		elif (method == 'postorder'):
 			return lft + rght + cur
 		elif (method == 'front'):
-			return cur if self.is_leaf() else None
+			return [cur if self.is_leaf() else None] + lft + rght
