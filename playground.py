@@ -22,7 +22,7 @@ if (which == "3"):
 
 ######### AUFGABE 5.2 TESTS #########
 if (which == "2"):
-	from compression import RunLenghtEncoding
+	from rle import RunLenghtEncoding
 	rle = RunLenghtEncoding();
 
 	print('Geben Sie einen Text zum codieren ein!');

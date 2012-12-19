@@ -7,10 +7,11 @@ __revision__ = ""
 __status__ = "Production"
 
 from compression import Compress
-from collections import Counter
 from bintree import Node
-import heapq
+
+from collections import Counter
 from math import log
+import heapq
 
 class Huffman(Compress):
 	# Built-in OMEGA Dictionary
@@ -120,7 +121,7 @@ class Huffman(Compress):
 		for char, weight in Counter(charCounter).items():
 			omega[char] = weight
 			entropy += weight/len(text)*log(weight,2)
-		
+
 		self.entropy = entropy*(-1)
 		self.omega = omega
 
