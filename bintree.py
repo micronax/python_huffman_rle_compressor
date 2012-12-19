@@ -43,8 +43,8 @@ class Node(object):
 		"""Links two Nodes to a new parent one"""
 		if(isinstance(other, Node) == False):
 			raise NotImplementedError
-
-		newNode = Node(self.value + other.value, self.weight + other.weight);
+		#self.value + other.value
+		newNode = Node(None, self.weight + other.weight);
 		newNode.left = self;
 		newNode.right = other;
 		return newNode;

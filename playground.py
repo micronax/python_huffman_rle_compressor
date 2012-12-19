@@ -9,11 +9,14 @@ which = input(">> ")
 ######### AUFGABE 5.2 TESTS #########
 if (which == "3"):
 	from huffman import Huffman
-	from omega import omega
 	Huff = Huffman()
-	Huff.setOmega(omega)
-	Huff.buildTree()
-	Huff.generateCode()
+	Huff.buildOwn = False
+	print('Geben Sie einen Text zum codieren ein!');
+	text = input('>> ');
+	encoded = Huff.encode(text)
+	print(encoded)
+	print('Dekodiert:')
+	print(Huff.decode(encoded))
 
 
 ######### AUFGABE 5.2 TESTS #########
