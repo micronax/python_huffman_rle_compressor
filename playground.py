@@ -3,12 +3,21 @@
 
 print('Testground EPR_05')
 print('Welchen Aufgabenteil moechten Sie testen?');
-print('[1/2]');
+print('[1|2|3]');
 which = input(">> ")
 
 ######### AUFGABE 5.2 TESTS #########
+if (which == "3"):
+	from huffman import Huffman
+	from omega import omega
+	Huff = Huffman()
+	Huff.setOmega(omega)
+	Huff.buildList()
+
+
+######### AUFGABE 5.2 TESTS #########
 if (which == "2"):
-	from compress import RunLenghtEncoding
+	from compression import RunLenghtEncoding
 	rle = RunLenghtEncoding();
 
 	print('Geben Sie einen Text zum codieren ein!');

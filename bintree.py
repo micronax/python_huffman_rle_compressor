@@ -22,7 +22,7 @@ class Node(object):
 		
 	def is_leaf(self):
 		"""Checks, if the current node is a leaf"""
-		pass;
+		return ((self.left == None) and (self.right == None))
 
 	def __lt__(self, other):
 		"""Performs a real less than comparision between current and other Node"""
@@ -34,7 +34,10 @@ class Node(object):
 
 	def __eq__(self, other):
 		"""Checks, if current Node equals other Node"""
-		return (self.weight == other.weight)
+		return (self.weight == other.weight) if (self and other) else False
+		
+	def __repr__(self):
+		return repr(self.value) + ", " + repr(self.weight)
 
 	def __add__ (self, other):
 		"""Links two Nodes to a new parent one"""
@@ -61,4 +64,4 @@ class Node(object):
 		elif (method == 'postorder'):
 			return lft + rght + cur
 		elif (method == 'front'):
-			return [cur if self.is_leaf() else None] + lft + rght
+			return cur if self.is_leaf() == True else [] + lft + rght
