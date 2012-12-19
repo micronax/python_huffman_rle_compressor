@@ -10,12 +10,15 @@ import re
 from compression import Compress
 
 class RunLenghtEncoding(Compress):
-	""" Docstring """
+	""" Suply methods for compressing / uncompressing text using RLE-Algorithm """
 	
 	regex_zero	= '^0+'
 	regex_one	= '^1+'
 
 	def encode(self, text):
+		""" Encode text using RLE-Algorithm """
+		if (len(text.strip()) == 0):
+			return '';
 		# Encode text to binary
 		binary = ''.join(['%08d'%int(bin(ord(s))[2:]) for s in text])
 		bin_lenght = len(binary)
@@ -43,6 +46,7 @@ class RunLenghtEncoding(Compress):
 		return output;
 
 	def decode(self, text):
+		""" Decode text using RLE-Algorithm """
 		output = '';	
 		while (len(text) > 0):
 			if (text[0] == '1' or text[0] == '0'):
@@ -56,4 +60,5 @@ class RunLenghtEncoding(Compress):
 		return ''.join([chr(int(output[i*8:i*8+8],2)) for i in range(0,int(len(output))//8)])
 
 	def verbose(self, text=''):
+		""" Print verbose information about encoding process """
 		print('The compression ratio values: '+str(round(float(self.ratio),2))+" %");

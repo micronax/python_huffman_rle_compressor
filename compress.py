@@ -135,4 +135,6 @@ except IOError:
 	quit()
 
 if (args['verbose']):
+	if (args['compression'] != None):
+		coder.verbose()
 	print('EVERYTHING WENT BETTER THAN EXCEPTED!')

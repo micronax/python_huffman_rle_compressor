@@ -14,6 +14,7 @@ from math import log
 import heapq
 
 class Huffman(Compress):
+	""" Supplies methods to encode / decode data using huffman-algorithm """
 	# Built-in OMEGA Dictionary
 	omega = {\
 		" ":0.133997441804692,      "´":5.49865771142231e-06,   "^":3.03427330294172e-06, \
@@ -63,8 +64,13 @@ class Huffman(Compress):
 	entropy = 0
 	forrest = []
 	codeTranslation = {}
+	setown = True
 
 	def encode(self, text):
+		""" Encode text using huffman-algorithm """
+		if (len(text.strip()) == 0):
+			return '';
+
 		if (self.buildOwn == True):
 			# Build own OMEGA Tree
 			self.generateOmega(text)
@@ -93,6 +99,7 @@ class Huffman(Compress):
 		return encodedText
 
 	def decode(self, text):
+		""" Decode text using huffman-algorithm """
 		if (self.buildOwn == True and self.setown != True):
 			print('Cannot read input dictionary. Aborting!')
 			quit()
@@ -119,6 +126,7 @@ class Huffman(Compress):
 		return decodedText
 
 	def generateOmega(self, text):
+		""" Generate OMEGA-Dictionary based on input-text """
 		charCounter = Counter(text)
 		omega = {}
 		entropy = 0
@@ -130,12 +138,14 @@ class Huffman(Compress):
 		self.omega = omega
 
 	def setOmega(self, omega):
-		 if (type(omega) is not dict):
-		 	raise TypeError
-		 self.omega = omega
-		 self.setown = True
+		""" Set / Import OMEGA-Dictionary as dictionary """
+		if (type(omega) is not dict):
+			raise TypeError
+		self.omega = omega
+		self.setown = True
 
 	def buildTree(self):
+		""" Build huffman-tree using input-text """
 		self.forrest = []
 		lst = []
 
@@ -156,6 +166,7 @@ class Huffman(Compress):
 			heapq.heappush(self.forrest, leftNode + rightNode)
 
 	def buildTranslationTable(self, node=None, code=''):
+		""" Build translation-table based on the huffman-tree """
 		if (node == None):
 			node = self.forrest[0]
 
@@ -177,5 +188,6 @@ class Huffman(Compress):
 		return None
 
 	def verbose(self, text=''):
+		""" Output verbose information about compression ratio and entropy """
 		print('The compression ratio values: '+str(round(float(self.ratio),2))+" %");
 		print('The entropy values '+str(self.entropy))
