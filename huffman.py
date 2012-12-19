@@ -29,23 +29,23 @@ class Huffman(Compress):
 		 	raise TypeError
 		 self.omega = omega
 
-	def buildList(self):
+	def buildTree(self):
 		lst = []
+
+		# Convert Omega dictionary to list for smarter handling with heapq
 		for k in self.omega:
 			lst.append([k, self.omega[k]])
 
-		lst = sorted(lst, key=lambda p: p[1])
-
-		print(lst)
-
+		# Create leaf-Nodes for all characters
 		for e in lst:
 			self.forrest.append(Node(e[0], e[1]))
 
+		heapq.heapify(self.forrest)
+		# Build Tree
 		while(len(self.forrest) > 1):
-			n1 = self.forrest.pop(0)
-			n2 = self.forrest.pop(0)
-			n3 = n1 + n2
-			self.forrest.append(n3)
-			self.forrest = sorted(self.forrest, key=lambda n: n.weight)
+			leftNode = heapq.heappop(self.forrest)
+			rightNode = heapq.heappop(self.forrest)
+			heapq.heappush(self.forrest, leftNode + rightNode)
 
-		print(self.forrest)
+	def generateCode(self):
+		pass

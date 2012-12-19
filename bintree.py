@@ -41,7 +41,9 @@ class Node(object):
 
 	def __add__ (self, other):
 		"""Links two Nodes to a new parent one"""
-		
+		if(isinstance(other, Node) == False):
+			raise NotImplementedError
+
 		newNode = Node(self.value + other.value, self.weight + other.weight);
 		newNode.left = self;
 		newNode.right = other;

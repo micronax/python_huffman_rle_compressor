@@ -12,7 +12,8 @@ if (which == "3"):
 	from omega import omega
 	Huff = Huffman()
 	Huff.setOmega(omega)
-	Huff.buildList()
+	Huff.buildTree()
+	Huff.generateCode()
 
 
 ######### AUFGABE 5.2 TESTS #########
