@@ -10,13 +10,14 @@ which = input(">> ")
 if (which == "3"):
 	from huffman import Huffman
 	Huff = Huffman()
-	Huff.buildOwn = False
+	Huff.buildOwn = True
 	print('Geben Sie einen Text zum codieren ein!');
 	text = input('>> ');
 	encoded = Huff.encode(text)
 	print(encoded)
 	print('Dekodiert:')
 	print(Huff.decode(encoded))
+	Huff.verbose()
 
 
 ######### AUFGABE 5.2 TESTS #########

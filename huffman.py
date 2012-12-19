@@ -10,6 +10,7 @@ from compression import Compress
 from collections import Counter
 from bintree import Node
 import heapq
+from math import log
 
 class Huffman(Compress):
 	# Built-in OMEGA Dictionary
@@ -58,6 +59,7 @@ class Huffman(Compress):
 	}
 
 	buildOwn = True
+	entropy = 0
 	forrest = []
 	codeTranslation = {}
 
@@ -65,6 +67,9 @@ class Huffman(Compress):
 		if (self.buildOwn == True):
 			# Build own OMEGA Tree
 			self.generateOmega(text)
+
+		# Convert input text to binary for comparision
+		binary_lenght = len(''.join(['%08d'%int(bin(ord(s))[2:]) for s in text]))
 
 		# Build huffman-tree
 		self.buildTree()
@@ -76,6 +81,9 @@ class Huffman(Compress):
 		encodedText = ''
 		for c in text:
 			encodedText += self.codeTranslation[c]
+
+		huffman_lenght = len(encodedText)
+		self.ratio = huffman_lenght/binary_lenght
 
 		return encodedText
 
@@ -105,15 +113,15 @@ class Huffman(Compress):
 
 		return decodedText
 
-	def verbose(self, text):
-		raise NotImplementedError
-
 	def generateOmega(self, text):
 		charCounter = Counter(text)
 		omega = {}
+		entropy = 0
 		for char, weight in Counter(charCounter).items():
 			omega[char] = weight
+			entropy += weight/len(text)*log(weight,2)
 		
+		self.entropy = entropy*(-1)
 		self.omega = omega
 
 	def setOmega(self, omega):
@@ -161,3 +169,7 @@ class Huffman(Compress):
 			self.buildTranslationTable(node.right, code)
 			code = code[0:len(code)-1]
 		return None
+
+	def verbose(self, text=''):
+		print('The compression ratio values: '+str(round(float(self.ratio),2))+" %");
+		print('The entropy values '+str(self.entropy))
