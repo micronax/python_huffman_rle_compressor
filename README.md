@@ -23,6 +23,12 @@ Arbeitsaufwand ca. 10 Stunden
 	  -v, --verbose         Verbose output
 	  -d {b,g}, --dictionary {b,g}
 	                        Choose between built-in dictionary or generate own
+	                        
+### Haftung / Hinweise
+Ich stelle keine Ansprüche an vollständige und fehlerfreie Funktionalität des Codes. Das Script ist lediglich im Rahmen einiger Übungsaufgaben für studentische Zwecke entwickelt worden und nicht für produktive Komprimierung geeignet / gedacht.  
+Ich übernehme keinerlei Haftung für Schäden am ausführenden Computer und / oder den zu komprimierenden / zu entpackenden Dateien.  
+  
+Feel free to create push requests!
 
 ### Copyright
 Ich habe diesen Code auf Github hochgeladen, damit sich interessierte Studenten (aber auch Andere ;)) ein Bild von meiner Arbeit machen können. Vielleicht ist der Code auch für den Einen oder Anderen hilfreich.  
