@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-__author__ = "Fabian Golle <me@fabian-golle.de>, Veronika Schoepf <veronika-s@hotmail.de>"
-__copyright__ = "Fabian Golle <me@fabian-golle.de>, Veronika Schoepf <veronika-s@hotmail.de>"
+__author__ = "Fabian Golle <me@fabian-golle.de>"
+__copyright__ = "Fabian Golle <me@fabian-golle.de>"
 __version__ = "1.0"
 __revision__ = "cf25435f11"
 __status__ = "Production"
